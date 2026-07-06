@@ -1,0 +1,140 @@
+# ==========================
+# Python
+# ==========================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.pyd
+*.pyo
+
+# ==========================
+# Virtual Environment
+# ==========================
+venv/
+env/
+ENV/
+.venv/
+
+# ==========================
+# Environment Variables
+# ==========================
+.env
+.env.*
+!.env.example
+
+# ==========================
+# IDE
+# ==========================
+.vscode/
+.idea/
+*.iml
+
+# ==========================
+# OS Files
+# ==========================
+.DS_Store
+Thumbs.db
+
+# ==========================
+# Logs
+# ==========================
+logs/
+*.log
+
+# ==========================
+# Streamlit
+# ==========================
+.streamlit/secrets.toml
+
+# ==========================
+# Jupyter
+# ==========================
+.ipynb_checkpoints/
+
+# ==========================
+# Build
+# ==========================
+build/
+dist/
+*.egg-info/
+
+# ==========================
+# Pytest
+# ==========================
+.pytest_cache/
+.coverage
+htmlcov/
+
+# ==========================
+# mypy
+# ==========================
+.mypy_cache/
+
+# ==========================
+# Ruff
+# ==========================
+.ruff_cache/
+
+# ==========================
+# Face Recognition Models
+# ==========================
+*.pt
+*.pth
+*.onnx
+*.h5
+*.ckpt
+*.safetensors
+
+# ==========================
+# AI Embeddings
+# ==========================
+embeddings/
+vector_db/
+faiss_index/
+chroma/
+qdrant_data/
+
+# ==========================
+# Images & Videos
+# ==========================
+captures/
+recordings/
+uploads/
+temp/
+cache/
+
+# ==========================
+# Database
+# ==========================
+*.sqlite3
+*.db
+
+# PostgreSQL dumps
+*.sql
+*.dump
+
+# ==========================
+# Runtime Files
+# ==========================
+*.pid
+
+# ==========================
+# Node (if frontend added later)
+# ==========================
+node_modules/
+npm-debug.log*
+yarn.lock
+pnpm-lock.yaml
+
+# ==========================
+# Docker
+# ==========================
+docker-compose.override.yml
+
+# ==========================
+# Misc
+# ==========================
+*.bak
+*.tmp
+*.swp
