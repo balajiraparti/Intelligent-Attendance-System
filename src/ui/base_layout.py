@@ -7,11 +7,13 @@ def style_base_layout():
         """
         <style>
 @import url('https://fonts.googleapis.com/css2?family=Bowlby+One&family=Changa+One:ital@0;1&display=swap');
-        
+
         #MainMenu, footer, header{
         visibility: hidden;
         }
         :root {
+            --space-xxs: 0.35rem;
+            --space-xs: 0.75rem;
             --space-1: 0.5rem;
             --space-2: 1rem;
             --space-3: 1.5rem;
@@ -67,8 +69,8 @@ def style_base_layout():
         }
 
         .block-container {
-            padding-top: 3rem !important;
-            padding-bottom: 2rem !important;
+            padding-top: var(--space-4) !important;
+            padding-bottom: var(--space-4) !important;
             max-width: 1240px;
         }
 
@@ -181,7 +183,7 @@ def style_base_layout():
         }
 
         .section-description {
-            margin: 0.75rem 0 0;
+            margin: var(--space-xs) 0 0;
             color: var(--text-muted) !important;
             line-height: 1.65;
             max-width: 52rem;
@@ -199,7 +201,7 @@ def style_base_layout():
         }
 
         .hero-section {
-            padding: 1.5rem;
+            padding: var(--space-3);
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -216,7 +218,7 @@ def style_base_layout():
         }
 
         .hero-subtitle {
-            margin: 1rem 0 0;
+            margin: var(--space-2) 0 0;
             font-size: 1.02rem;
             font-weight: 600;
             color: var(--primary) !important;
@@ -225,7 +227,7 @@ def style_base_layout():
         }
 
         .hero-description {
-            margin: 0.85rem 0 0;
+            margin: var(--space-xs) 0 0;
             color: var(--text-muted) !important;
             line-height: 1.75;
             max-width: 40rem;
@@ -273,7 +275,7 @@ def style_base_layout():
         }
 
         .hero-visual {
-            padding: 1.5rem;
+            padding: var(--space-3);
             height: 100%;
             display: flex;
             align-items: stretch;
@@ -332,17 +334,17 @@ def style_base_layout():
         }
 
         .metric-card {
-            padding: 1.25rem;
+            padding: var(--space-3);
             justify-content: center;
         }
 
         .feature-card {
-            padding: 1.5rem;
+            padding: var(--space-3);
             justify-content: flex-start;
         }
 
         .portal-card {
-            padding: 1.5rem;
+            padding: var(--space-3);
             justify-content: flex-start;
         }
 
@@ -365,12 +367,8 @@ def style_base_layout():
             color: var(--primary) !important;
             display: grid;
             place-items: center;
-            margin-bottom: 1rem;
+            margin-bottom: var(--space-2);
             flex: 0 0 auto;
-        }
-
-        .metric-card__icon {
-            margin-bottom: 0.75rem;
         }
 
         .metric-card__value {
@@ -383,7 +381,7 @@ def style_base_layout():
         }
 
         .metric-card__label {
-            margin-top: 0.45rem;
+            margin-top: var(--space-1);
             color: var(--text-muted) !important;
             font-size: 0.92rem;
             font-weight: 600;
@@ -401,7 +399,7 @@ def style_base_layout():
         .feature-card__text,
         .portal-card__text,
         .muted-copy {
-            margin: 0.7rem 0 0;
+            margin: var(--space-xs) 0 0;
             color: var(--text-muted) !important;
             line-height: 1.7;
             flex: 1 1 auto;
@@ -416,8 +414,8 @@ def style_base_layout():
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 1rem;
-            margin-bottom: 1rem;
+            gap: var(--space-2);
+            margin-bottom: var(--space-2);
         }
 
         .portal-badge {
@@ -437,9 +435,9 @@ def style_base_layout():
         .portal-points {
             list-style: none;
             padding: 0;
-            margin: 1rem 0 0;
+            margin: var(--space-2) 0 0;
             display: grid;
-            gap: 0.75rem;
+            gap: var(--space-xs);
         }
 
         .portal-points li {
@@ -520,6 +518,21 @@ def style_base_layout():
             margin-top: var(--space-4);
         }
 
+        .section-gap {
+            display: block;
+            height: var(--space-4);
+        }
+
+        .section-gap-sm {
+            display: block;
+            height: var(--space-2);
+        }
+
+        .section-gap-xs {
+            display: block;
+            height: var(--space-xxs);
+        }
+
         .auth-shell {
             display: grid;
             gap: 1.25rem;
@@ -592,8 +605,22 @@ def style_base_layout():
         .auth-actions {
             display: grid;
             grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 1rem;
-            margin-top: 0.75rem;
+            gap: var(--space-2);
+            margin-top: var(--space-xs);
+        }
+
+        .dashboard-subtitle {
+            margin: var(--space-xxs) 0 0;
+            color: var(--text-muted) !important;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .hint-text {
+            margin: var(--space-xxs) 0 0;
+            text-align: center;
+            color: var(--text-muted) !important;
+            font-size: 0.85rem;
         }
 
         div[data-testid="stTextInput"] label,

@@ -1,6 +1,7 @@
 from base64 import b64encode
-import streamlit as st
 from pathlib import Path
+
+import streamlit as st
 
 from src.components.header import header_home
 from src.ui.base_layout import style_base_layout
@@ -36,8 +37,12 @@ def _metric_card(value: str, label: str, icon_name: str) -> None:
     )
 
 
-def _portal_card(title: str, description: str, points: list[str], badge: str, icon_name: str) -> None:
-    points_html = "".join(f"<li>{_icon('check_circle')}<span>{point}</span></li>" for point in points)
+def _portal_card(
+    title: str, description: str, points: list[str], badge: str, icon_name: str
+) -> None:
+    points_html = "".join(
+        f"<li>{_icon('check_circle')}<span>{point}</span></li>" for point in points
+    )
     st.markdown(
         f"""
         <div class="portal-card">
@@ -110,21 +115,39 @@ def home_page():
 
         action_left, action_right = st.columns(2, gap="small")
         with action_left:
-            if st.button("Teacher Portal", key="home_teacher_portal", type="primary", use_container_width=True):
+            if st.button(
+                "Teacher Portal",
+                key="home_teacher_portal",
+                type="primary",
+                use_container_width=True,
+            ):
                 st.session_state["login_type"] = "teacher"
                 st.rerun()
         with action_right:
-            if st.button("Student Portal", key="home_student_portal", type="secondary", use_container_width=True):
+            if st.button(
+                "Student Portal",
+                key="home_student_portal",
+                type="secondary",
+                use_container_width=True,
+            ):
                 st.session_state["login_type"] = "student"
                 st.rerun()
 
     with right:
         _hero_visual()
 
-    st.markdown("<div style='height: 1.35rem;'></div>", unsafe_allow_html=True)
-    st.markdown("<p class='section-kicker'>Core capabilities</p>", unsafe_allow_html=True)
-    st.markdown("<h2 class='section-title'>Built for fast recognition, secure access, and live analytics.</h2>", unsafe_allow_html=True)
-    st.markdown("<p class='section-description'>Every section is designed to reduce friction: faster check-ins for students, less manual work for teachers, and clearer visibility for administrators.</p>", unsafe_allow_html=True)
+    st.markdown("<div class='section-gap'></div>", unsafe_allow_html=True)
+    st.markdown(
+        "<p class='section-kicker'>Core capabilities</p>", unsafe_allow_html=True
+    )
+    st.markdown(
+        "<h2 class='section-title'>Built for fast recognition, secure access, and live analytics.</h2>",
+        unsafe_allow_html=True,
+    )
+    st.markdown(
+        "<p class='section-description'>Every section is designed to reduce friction: faster check-ins for students, less manual work for teachers, and clearer visibility for administrators.</p>",
+        unsafe_allow_html=True,
+    )
 
     feature_col_1, feature_col_2, feature_col_3 = st.columns(3, gap="medium")
     with feature_col_1:
@@ -146,21 +169,36 @@ def home_page():
             "analytics",
         )
 
-    st.markdown("<div style='height: 1.35rem;'></div>", unsafe_allow_html=True)
+    st.markdown("<div class='section-gap'></div>", unsafe_allow_html=True)
     st.markdown("<p class='section-kicker'>Portal access</p>", unsafe_allow_html=True)
-    st.markdown("<h2 class='section-title'>Choose the workspace that matches your role.</h2>", unsafe_allow_html=True)
-    st.markdown("<p class='section-description'>Each portal is designed with its own priorities, but both share the same strong visual system and simple navigation.</p>", unsafe_allow_html=True)
+    st.markdown(
+        "<h2 class='section-title'>Choose the workspace that matches your role.</h2>",
+        unsafe_allow_html=True,
+    )
+    st.markdown(
+        "<p class='section-description'>Each portal is designed with its own priorities, but both share the same strong visual system and simple navigation.</p>",
+        unsafe_allow_html=True,
+    )
 
     portal_col_1, portal_col_2 = st.columns(2, gap="large")
     with portal_col_1:
         _portal_card(
             "Teacher Portal",
             "Manage classes, review records, and oversee attendance with a focused dashboard built for daily teaching workflows.",
-            ["Daily attendance controls", "Classroom management tools", "Reports and history at a glance"],
+            [
+                "Daily attendance controls",
+                "Classroom management tools",
+                "Reports and history at a glance",
+            ],
             "For staff",
             "school",
         )
-        if st.button("Open Teacher Portal", key="teacher_portal", type="primary", use_container_width=True):
+        if st.button(
+            "Open Teacher Portal",
+            key="teacher_portal",
+            type="primary",
+            use_container_width=True,
+        ):
             st.session_state["login_type"] = "teacher"
             st.rerun()
 
@@ -168,17 +206,29 @@ def home_page():
         _portal_card(
             "Student Portal",
             "Check attendance status, review participation, and stay aligned with your class schedule in a simple interface.",
-            ["Quick attendance review", "Student-first navigation", "Mobile-friendly experience"],
+            [
+                "Quick attendance review",
+                "Student-first navigation",
+                "Mobile-friendly experience",
+            ],
             "For students",
             "person",
         )
-        if st.button("Open Student Portal", key="student_portal", type="primary", use_container_width=True):
+        if st.button(
+            "Open Student Portal",
+            key="student_portal",
+            type="primary",
+            use_container_width=True,
+        ):
             st.session_state["login_type"] = "student"
             st.rerun()
 
-    st.markdown("<div style='height: 1.35rem;'></div>", unsafe_allow_html=True)
+    st.markdown("<div class='section-gap'></div>", unsafe_allow_html=True)
     st.markdown("<p class='section-kicker'>Live metrics</p>", unsafe_allow_html=True)
-    st.markdown("<h2 class='section-title'>Operational overview in one glance.</h2>", unsafe_allow_html=True)
+    st.markdown(
+        "<h2 class='section-title'>Operational overview in one glance.</h2>",
+        unsafe_allow_html=True,
+    )
 
     metric_col_1, metric_col_2, metric_col_3, metric_col_4 = st.columns(4, gap="medium")
     with metric_col_1:
