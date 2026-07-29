@@ -1,5 +1,5 @@
 import streamlit as st
-
+from src.components.dialog_auto_enroll import auto_enroll_dialog
 st.set_page_config(
     page_title="Smart Attendance System",
     page_icon="SA",
@@ -22,4 +22,12 @@ def main():
             student_page()
         case None:
             home_page()
+    join_code=st.query_params.get('join-code')
+    if join_code:
+        if st.session_state.login_type!='student':
+            st.session_state.login_type='student'
+            st.rerun()
+        if st.session_state.get('is_logged_in') and st.session_state.get('user_role')=='student':
+            auto_enroll_dialog(join_code)
+
 main()
