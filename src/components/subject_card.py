@@ -1,25 +1,54 @@
 import streamlit as st
-from textwrap import dedent
+
+# Accent colours cycling through the palette so each card feels distinct
+_ACCENTS = [
+    ("#2563EB", "#EFF6FF"),  # blue
+    ("#8B5CF6", "#F5F3FF"),  # purple
+    ("#14B8A6", "#F0FDFA"),  # teal
+    ("#F59E0B", "#FFFBEB"),  # amber
+    ("#10B981", "#ECFDF5"),  # green
+    ("#EF4444", "#FFF5F5"),  # red
+]
 
 
-def subject_card(name, code, section, stats=None, footer_callback=None):
-     html = f"""
-        <div style="background:white; border-left: 8px solid #EB459E; padding:25px; border-radius: 20px; border: 1px solid black; margin-bottom:20px;">
-        <h3 style="margin:0; color: #1e293b; font-size: 1.5rem ">{name}</h3>
-        <p style="color:#64748b; margin:10px 0;">Code : <span style="background:#E0E3FF; color:#5865F2; padding:2px 8px; border-radius:5px;">{code} </span> | Section : {section}</p>
-        
-        """
-    
-     if stats:
-        html+= """
-        <div style="display:flex; gap:8px; flex-wrap:wrap;">
-        """
-        for icon, label, value in stats:
-            html+= f'<div style="background: #EB459E10; padding:5px 12px; border-radius:12px; font-size:0.9rem">{icon} <b>{value}</b> {label} </div>'
-        
-        html+= "</div>"
+def subject_card(name, code, section, stats=None, footer_callback=None, index: int = 0):
+    """
+    Renders a premium subject card.
 
-     st.markdown(html, unsafe_allow_html=True)
+    Parameters
+    ----------
+    name            : Subject name
+    code            : Subject code  (shown as a monospace pill)
+    section         : Section label (shown as a neutral pill)
+    stats           : List of (icon_emoji, label, value) tuples
+    footer_callback : Callable — rendered below the stats (e.g. action buttons)
+    index           : Position in the list; drives accent colour cycling
+    """
+    accent_color, accent_bg = _ACCENTS[index % len(_ACCENTS)]
 
-     if footer_callback:
+    # ── Stats chips ──────────────────────────────────────────────────────
+    stats_html = ""
+    if stats:
+        chips = "".join(
+            f'<span class="sub-stat">{icon} <strong>{value}</strong> {label}</span>'
+            for icon, label, value in stats
+        )
+        stats_html = f'<div class="sub-stats">{chips}</div>'
+
+    st.markdown(
+        f"""
+        <div class="sub-card" style="border-left-color: {accent_color};">
+            <p class="sub-card-name">{name}</p>
+            <div class="sub-card-meta">
+                <span class="code-pill" style="background:{accent_bg}; color:{accent_color};">{code}</span>
+                <span class="sub-card-sep" style="color:var(--border);">·</span>
+                <span class="section-pill">§ {section}</span>
+            </div>
+            {stats_html}
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+    if footer_callback:
         footer_callback()
